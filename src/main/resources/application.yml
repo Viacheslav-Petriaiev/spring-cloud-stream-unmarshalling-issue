@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: demo-server
+  cloud:
+    stream:
+      function:
+        definition: operationsProcessor
+        bindings:
+          operationsProcessor-in-0: operationsInput
+          operationsProcessor-out-0: operationsOutput
+      bindings:
+        operationsInput:
+          destination: operationsInputQueue
+        operationsOutput:
+          destination: operationsOutputQueue

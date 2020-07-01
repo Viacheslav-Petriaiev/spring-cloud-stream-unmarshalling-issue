@@ -19,18 +19,18 @@ internal class OperationsListenerTest {
     private lateinit var messageCollector: MessageCollector
 
     @Autowired
-    private lateinit var channels: CloudOperationsChannels
+    private lateinit var cloudOperationsChannels: CloudOperationsChannels
 
     @Test
     fun operationsListener() {
 
-        channels.input().send(
+        cloudOperationsChannels.input().send(
                 GenericMessage(
                         ObjectMapper().writeValueAsBytes(
                                 Person(firstName = "testFirstName", lastName = "testLastName")
                         )
                 )
         )
-        assertThat(messageCollector.forChannel(channels.output())).isNotEmpty
+        assertThat(messageCollector.forChannel(cloudOperationsChannels.output())).isNotEmpty
     }
 }
