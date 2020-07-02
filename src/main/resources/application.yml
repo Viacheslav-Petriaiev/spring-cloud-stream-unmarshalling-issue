@@ -6,10 +6,7 @@ spring:
       function:
         definition: operationsProcessor
         bindings:
-          operationsProcessor-in-0: operationsInput
-          operationsProcessor-out-0: operationsOutput
-      bindings:
-        operationsInput:
-          destination: operationsInputQueue
-        operationsOutput:
-          destination: operationsOutputQueue
+          operationsProcessor-in-0:
+            destination: operationsInputQueue
+          operationsProcessor-out-0:
+            destination: operationsOutputQueue
