@@ -5,8 +5,8 @@ spring:
     stream:
       function:
         definition: operationsProcessor
-        bindings:
-          operationsProcessor-in-0:
-            destination: operationsInputQueue
-          operationsProcessor-out-0:
-            destination: operationsOutputQueue
+      bindings:
+        operationsProcessor-in-0:
+          destination: operationsInputQueue
+        operationsProcessor-out-0:
+          destination: operationsOutputQueue

@@ -2,6 +2,7 @@ package com.example.demo.cloud.listener
 
 import com.example.demo.domain.Person
 import org.springframework.context.annotation.Bean
+import org.springframework.messaging.Message
 import org.springframework.stereotype.Component
 import reactor.core.publisher.Flux
 import java.util.function.Function
@@ -10,11 +11,11 @@ import java.util.function.Function
 class OperationsListener {
 
     @Bean
-    fun operationsProcessor(): Function<Flux<Person>, Flux<Person>> =
-            Function<Flux<Person>, Flux<Person>> { input ->
+    fun operationsProcessor(): Function<Flux<Message<ByteArray>>, Flux<Message<ByteArray>>> =
+            Function<Flux<Message<ByteArray>>, Flux<Message<ByteArray>>> { input ->
                 input
                         .doOnNext {
-                            println("operationsProcessor: Message received")
+                            println("operationsProcessor: Message received: $it")
                         }
             }
 }

@@ -8,12 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.cloud.stream.binder.test.InputDestination
 import org.springframework.cloud.stream.binder.test.OutputDestination
+import org.springframework.cloud.stream.binder.test.TestChannelBinderConfiguration
+import org.springframework.context.annotation.Import
 import org.springframework.messaging.support.GenericMessage
 import org.springframework.test.context.ActiveProfiles
 
-
 @SpringBootTest
 @ActiveProfiles("test")
+@Import(TestChannelBinderConfiguration::class)
 internal class OperationsListenerTest {
 
     @Autowired
@@ -33,6 +35,7 @@ internal class OperationsListenerTest {
                 ),
                 "operationsInputQueue"
         )
-        assertThat(output.receive(5000, "operationsOutputQueue")).isNotNull
+        val person = output.receive(5000, "operationsOutputQueue")
+        assertThat(person).isNotNull
     }
 }
